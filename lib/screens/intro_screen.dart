@@ -23,10 +23,10 @@ class IntroScreen extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.all(24.0),
-            child: Text("we deliver groceries at your at your doorstep",
+            child: Text("we deliver groceries at your doorstep",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.notoSerif(
-                    fontSize: 35.0, fontWeight: FontWeight.bold)),
+                    fontSize: 37.0, fontWeight: FontWeight.bold)),
           ),
 
           // Fresh items every day
