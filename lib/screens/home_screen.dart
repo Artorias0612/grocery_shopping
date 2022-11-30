@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
             // good morning text
 
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
               child: Text('Good Morning'),
             ),
 
@@ -37,7 +37,41 @@ class HomeScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            )
+            ),
+
+            const SizedBox(
+              height: 5,
+            ),
+
+            // Divider
+
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              child: Divider(),
+            ),
+
+            const SizedBox(
+              height: 24.0,
+            ),
+
+            // fresh items + grid
+
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              child: Text(
+                "Fresh Items",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+
+            Expanded(
+                child: GridView.builder(
+              gridDelegate:
+                  const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              itemBuilder: (context, (context, index) {
+                return GroceryItemTile();
+              }),
+            ))
           ],
         ),
       ),
