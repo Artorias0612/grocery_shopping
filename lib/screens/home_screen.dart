@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_shopping/components/grocery_item_tile.dart';
 import 'package:grocery_shopping/models/cart_model.dart';
+import 'package:grocery_shopping/screens/cart_page.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,7 +12,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const CartPage())),
         backgroundColor: Colors.black,
         child: const Icon(Icons.shopping_bag),
       ),
@@ -26,9 +28,9 @@ class HomeScreen extends StatelessWidget {
 
             // good morning text
 
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Text('Good Morning'),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Text('Good Morning', style: GoogleFonts.notoSerif()),
             ),
 
             const SizedBox(
@@ -84,6 +86,10 @@ class HomeScreen extends StatelessWidget {
                       itemPrice: value.shopItems[index][1],
                       imagePath: value.shopItems[index][2],
                       color: value.shopItems[index][3],
+                      onPressed: () {
+                        Provider.of<CartModel>(context, listen: false)
+                            .addItemToCart(index);
+                      },
                     );
                   }),
                 );
