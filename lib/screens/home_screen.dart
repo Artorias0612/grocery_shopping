@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery_shopping/components/grocery_item_tile.dart';
+import 'package:grocery_shopping/models/cart_model.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -7,6 +10,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.black,
+        child: const Icon(Icons.shopping_bag),
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
@@ -65,13 +73,22 @@ class HomeScreen extends StatelessWidget {
             ),
 
             Expanded(
-                child: GridView.builder(
-              gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              itemBuilder: (context, (context, index) {
-                return GroceryItemTile();
+              child: Consumer<CartModel>(builder: (context, value, child) {
+                return GridView.builder(
+                  itemCount: value.shopItems.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: ((context, index) {
+                    return GroceryItemTile(
+                      itemName: value.shopItems[index][0],
+                      itemPrice: value.shopItems[index][1],
+                      imagePath: value.shopItems[index][2],
+                      color: value.shopItems[index][3],
+                    );
+                  }),
+                );
               }),
-            ))
+            )
           ],
         ),
       ),
